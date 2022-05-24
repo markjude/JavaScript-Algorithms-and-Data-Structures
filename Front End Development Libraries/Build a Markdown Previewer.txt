@@ -1,0 +1,167 @@
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+     <title>MARKDOWN PREVIEWERr</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,300&family=Cookie&family=Lato&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/nolan/64/markdown.png">
+    <link rel="stylesheet" href="../assets/css/MarkDownPreviewer.css">
+ 
+</head>
+ 
+<body>
+    <div class='header'>
+        <h1 id="page-header">
+            MARKDOWN PREVIEWER
+        </h1>
+    </div>
+    <div id="content">
+        <div id='editor-container'>
+            <h2  id='editor-label'>EDITOR</h2>
+            <!-- editor updates previewer as typed-->
+    <textarea id="editor" cols="100" rows="15">
+# Welcome to the Markdown Previewer!
+<hr>
+ 
+## This is a sub-heading...
+ 
+### here are some other cool features
+
+ 
+<em> make any changes to see the difference in the output</em>
+<br>
+**bold** <i> italic</i>
+<ul>
+    <li>point1</li>
+    <li>point2</li>
+    <li>point3</li>
+</ul>
+            </textarea>
+        </div>
+        
+        <div id="preview-container">
+            <h2 id='preview-label'>Preview</h2>
+            <div id="preview">
+                <!-- the output goes here  -->
+                make changes in the editor to see the output
+            </div>
+        </div>
+    </div>
+    <!-- script tag and marked cdn  -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="../assets/js/MarkdownPreviewer.js"></script>
+    
+</body>
+</html>
+
+
+
+
+body {
+    background: SKYblue;
+    font-family: 'Lato', sans-serif; }
+  
+  .header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+    background: #e68a22; }
+  
+  .header #page-header {
+    position: sticky;
+    margin-top: 0px;
+    padding: 5px;
+    margin-top: -.5rem;
+    color: white;
+    text-decoration: underline;
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 700; }
+  
+  #content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column; }
+  
+  #editor::-webkit-scrollbar {
+    display: none; }
+  
+  #editor {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */ }
+  
+  #editor-container {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    width: 50vw;
+    padding: 2rem;
+    margin: 0 auto; }
+  
+  #editor-container #editor-label {
+    margin-bottom: 0;
+    min-width: 33%;
+    font-size: 2rem;
+    color: white; }
+  
+  #editor-container #editor {
+    box-sizing: border-box;
+    border: 0.6rem solid rgba(36, 111, 146, 0.973);
+    background: rgba(76, 188, 240, 0.68);
+    width: 50vw;
+    border-radius: 20%;
+    outline: none;
+    padding: 1.4rem; }
+  
+  #preview::-webkit-scrollbar {
+    display: none; }
+  
+  #preview {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */ }
+  
+  #preview-container {
+    margin-top: 0px; }
+  
+  #preview-container #preview {
+    overflow: scroll;
+    height: 30rem;
+    background: #e9b4b9;
+    margin-bottom: 0.4rem;
+    min-height: 10rem;
+    min-width: 30vw;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 1rem;
+    border: 0.8rem solid #a8686e;
+    border-radius: 15%;
+    margin: auto; }
+  
+  #preview-container #preview-label {
+    cursor: auto;
+    text-align: center;
+    color: white;
+    margin: 0;
+    font-size: 2rem; }
+
+
+
+
+const  editorContent=document.getElementById('editor')
+const  previewContent=document.getElementById('preview')
+// changePreview()
+function changePreview()
+{
+    let editorText=editorContent.value;
+    let previewText=marked(editorText);
+    console.log(editorText)
+    previewContent.innerHTML=previewText
+ 
+}
+editorContent.addEventListener('input', changePreview)

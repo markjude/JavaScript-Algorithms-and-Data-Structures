@@ -1,0 +1,111 @@
+<div id="calculator">
+	<div class="output"><p></p></div>
+	<div class="clear">C</div>
+	<span>7</span>
+	<span>8</span>
+	<span>9</span>
+	<span>+</span>
+	<span>4</span>
+	<span>5</span>
+	<span>6</span>
+	<span>-</span>
+	<span>1</span>
+	<span>2</span>
+	<span>3</span>
+	<span>/</span>
+	<span>0</span>
+	<span>.</span>
+	<span>=</span>
+	<span>*</span>
+</div>
+
+
+
+
+#calculator {
+  width: 450px;
+  height: 270px;;
+  margin: 50px auto 0 auto;
+  background-color: #353333;
+  padding: 10px 10px 260px 10px;
+  border-radius: 5px;
+  border-bottom: 5px solid #42729B;
+}
+
+.output {
+  width: 305px;
+  height: 40px;
+  float: left;
+  line-height: 40px;
+  background-color: #fff;
+  color: #000;
+  margin: 5px;
+}
+
+.output > p {
+  margin-left: 10px;
+}
+
+.clear, span {
+  height: 40px;
+  border-bottom: 3px solid grey;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  margin: 5px;
+} 
+
+.clear {
+  width: 95px;
+  float: left;
+  background-color: #c0392b;
+  color: #fff;
+    border-color: #A63125;
+}
+
+span {
+  float: left;
+  width: 95px;
+}
+span:hover{
+    
+	background-color:#00BFFF;
+} 
+
+
+
+
+
+window.onload = function () {
+	var calButtons = document.getElementsByTagName('span'),
+		output = document.querySelectorAll('.output p')[0],
+		clear = document.getElementsByClassName('clear')[0];
+  
+	for (var i = 0; i < calButtons.length; i++) {
+		if (calButtons[i].innerHTML === '=') {
+			calButtons[i].addEventListener("click", calculate(i));
+		} else {
+			calButtons[i].addEventListener("click", addValue(i));
+		}
+	}
+  
+	clear.onclick = function () {
+		output.innerHTML = '';
+	};  
+  
+	function addValue(i) {
+		return function () {		
+			output.innerHTML += calButtons[i].innerHTML;			
+		};
+	}
+
+	function calculate(i) {
+		return function () {
+			var final_res = output.innerHTML;  
+			output.innerHTML = eval(final_res);
+		};
+	}
+};
